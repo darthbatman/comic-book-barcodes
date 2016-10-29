@@ -1,6 +1,6 @@
 import requests
 
-def findComicBook(mainBarcode, issueCode):
+def getComicBook(mainBarcode, issueCode):
 	r = requests.get("http://www.upcitemdb.com/upc/" + mainBarcode)
 	numNameVariations = len(r.content.split("<td><b>")) - 1
 	masterName = r.content.split("<td><b>")[1].split("</b></td>")[0]
@@ -26,6 +26,6 @@ def findComicBook(mainBarcode, issueCode):
 			issueCode = issueCode[1:]
 	return {"series": masterName, "issue": issueCode}
 
-print findComicBook("761941311586", "00111")
+print getComicBook("761941311586", "00111")
 
 
